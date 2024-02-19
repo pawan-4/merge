@@ -1,0 +1,46 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'polls/static.css' %}">
+</head>
+<body>
+    <!-- <div>
+        <a href="{% url 'post_list' %}">Visit Blog</a>
+    </div> -->
+    <header class="page-header" style="background-color: orange;">
+        <div class="container-fluid" style=" position: relative;">
+            <h1 class="navbar-brand">
+                <a href="/" style="color: wheat;"> Blog</a>
+            </h1>
+            
+               
+                {% if user.is_authenticated %}
+                    
+                    
+                    
+
+                
+
+
+                {% else %}
+                    <a href="{% url 'user_login' %}" class="btn btn-login">Login</a>
+                    <a href="{% url 'signup' %}" class="btn btn-signup">Sign up</a>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+
+
+    {% if latest_question_list %}
+        <ul>
+            {% for question in latest_question_list %}
+                <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No polls are available.</p>
+    {% endif %}
+</body>
+</html>

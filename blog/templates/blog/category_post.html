@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <article class="category">
+        <aside class="actions">
+            {% if user.is_authenticated %}
+            <a class="btn btn-secondary" href="{% url 'post_list' %}">
+                {% include './icons/pencil-fill.svg' %}
+                    </a>
+            
+            {%endif%}
+        </aside>
+       
+        {% if category.published_date %}
+            <time class="date">
+                {{ category.published_date }}
+            </time>
+        {% endif %}
+        
+        <h2>{{ category.title }}</h2>
+        <p>{{ category.text|linebreaksbr }}</p>
+    </article>
+{% endblock %}

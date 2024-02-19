@@ -1,0 +1,11 @@
+{% extends 'blog/base.html' %}
+
+{%block content%}
+{% for category in categories %}
+    <article class="category">
+       
+        <h2><a href="{% url 'category_post' slug=category.slug %}">{{ category.title }}</a></h2>
+        
+    </article>
+{% endfor %}
+{%endblock%}
