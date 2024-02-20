@@ -12,7 +12,7 @@ class User(AbstractUser):
     
     email = models.EmailField(unique=True, null=True, db_index=True)
     dob = models.DateField(null=True, blank=True)
-    mobile_number = models.CharField(max_length=15, null=True, blank=True)
+    mobile_number = models.IntegerField(max_length=10, null=True, blank=True)
     about  = models.CharField(max_length=15, null=True, blank=True)     
     city =models.CharField(max_length=15,)
     country = models.CharField(max_length=15,)
@@ -26,7 +26,9 @@ class User(AbstractUser):
                 output_size = (150, 150)
                 img.thumbnail(output_size)
                 img.save(self.avatar.path)
-
+    def get_email(self):
+        return self.email
+    
     def __str__(self):
         return self.username
 

@@ -99,7 +99,7 @@ def tag_post(request, slug):
   
 def signup(request):
     if request.method == 'POST':
-        form = SignUpForm(request.POST)
+        form = SignUpForm(request.POST,request.FILES)
         if form.is_valid():
             user = form.save()
             login(request, user)
@@ -115,6 +115,10 @@ def user_login(request):
             user = form.get_user()
             login(request, user)
             return redirect('post_list')  
+        else:
+            user=form.get_email()
+            login(request,user)
+            return redirect('post_list')
     else:
         form = LoginForm()
     return render(request, 'blog/user_login.html', {'form': form})
@@ -127,9 +131,9 @@ def user_logout(request):
 def user_detail(request, user_id):
     print(user_id)
     print("---------")
-    user = get_object_or_404(User, id=user_id)
+    user = get_object_or_404(User,request.FILES, id=user_id,)
     
-    # Pass the 'user' object to the template for rendering
+    
     return render(request, 'blog/user_detail.html', {'user': user})
 
 def edit_profile(request, user_id):

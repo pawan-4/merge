@@ -10,9 +10,14 @@
 
 
                     <center>
-                    <img src="{{ user.avatar.url }}" alt="{{user.Username}}" accept=".jpg, .png, .png" style="border-radius: 50%; height: 60px; width: 60px ;">
+                        {% if user.avatar %}
+                            <img src="{{ request.user.avatar.url }}" alt="{{ user.Username }}" style="border-radius: 50%; height: 60px; width: 60px;" accept = "Jpg,png">
+                            {{ user.avatar }}      
+                            {% endif %}
+                         
                     </center>
-                    <!-- {{ user.avatar }} -->
+                    
+                    
 
                     <li class="list-group-item"><strong>Username:</strong> {{ user.username }}</li>
                     <li class="list-group-item"><strong>Email:</strong> {{ user.email }}</li>

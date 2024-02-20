@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 AUTH_USER_MODEL = 'blog.User'
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
+    'blog.backends.EmailOrUsernameModelBackend'
 ]
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'

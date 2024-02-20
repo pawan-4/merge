@@ -18,7 +18,7 @@ class UserAdmin(admin.ModelAdmin):
 
 class PostAdmin(admin.ModelAdmin):
     list_display = ('title', 'author', 'created_date', 'published_date', 'category','display_thumbnail' )
-    search_fields = ('title', 'author__username', 'category__name')
+    search_fields = ('title', 'author__username', 'category__slug')
     list_filter = ('created_date', 'published_date', 'category')
     def display_thumbnail(self, obj):
         return obj.thumbnail_tag()

@@ -30,21 +30,16 @@ class SignUpForm(UserCreationForm):
     )    
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2', 'first_name', 'last_name', 'city', 'country', 'dob','mobile_number']
+        fields = ['username', 'email', 'first_name', 'last_name', 'city', 'country', 'dob','mobile_number','avatar']
 
 
 class LoginForm(AuthenticationForm):
+    print('U=I am here')
     class Meta:
         model = User
 
 
 class EditProfileForm(UserChangeForm):
-
-    email = forms.EmailField(required=True)
-    mobile_number = forms.CharField(max_length=15, required=False)
-    dob = forms.DateField()
-    city =forms.CharField(max_length=15, required=True)
-    country=forms.CharField(max_length=15, required=True)
     class Meta:
         model = User
         fields = ['email','mobile_number','dob','city','country', 'avatar']
@@ -52,6 +47,8 @@ class EditProfileForm(UserChangeForm):
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ['text' ]
+        fields = ['author' ,'text' ]
 
 
+class EmailOrUsernameAuthenticationForm(AuthenticationForm):
+    username = forms.CharField(max_length=254)

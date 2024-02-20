@@ -1,11 +1,13 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-    <div class="post-list">
-        {% for post in posts %}
-            <article class="post">
-                <h2 class="post-title">
-                    <a href="{% url 'post_detail' slug=post.slug %}">{{ post.title }}</a>
+<div class="post-list">
+    {% for post in posts %}
+    <article class="post">
+        <h2 class="post-title">
+            {% if post.thumbnail %}
+            <a href="{% url 'post_detail' slug=post.slug %}"> <pre >   {{ post.title }}</pre> <img src="{{ post.thumbnail.url }}" alt="{{ post.title }}"height ="150px" width="200px"> </a>
+            {% endif %}
                 </h2>
                 
                 <time class="date">
@@ -37,9 +39,7 @@
                 <p>Category: {{ post.category.title }}</p>
                 <p>Tags: {% for tag in post.tags.all %}{{ tag.title }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
 
-                {% if post.thumbnail %}
-                    <img src="{{ post.thumbnail.url }}" alt="{{ post.title }}"height ="300px" width="900px">
-                {% endif %}
+                    
             </article>
         {% endfor %}
     </div>
