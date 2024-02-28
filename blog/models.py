@@ -12,7 +12,7 @@ class User(AbstractUser):
     
     email = models.EmailField(unique=True, null=True, db_index=True)
     dob = models.DateField(null=True, blank=True)
-    mobile_number = models.IntegerField(max_length=10, null=True, blank=True)
+    mobile_number = models.IntegerField( null=True, blank=True)
     about  = models.CharField(max_length=15, null=True, blank=True)     
     city =models.CharField(max_length=15,)
     country = models.CharField(max_length=15,)
@@ -97,7 +97,7 @@ class Comment(models.Model):
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
     parent_comment = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
-
+    name =models.CharField(max_length=200,null=True)
 
 
     def __str__(self):

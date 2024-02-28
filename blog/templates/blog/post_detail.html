@@ -52,7 +52,7 @@
 
 
 
-        <h1>{{ post.title }}</h1>
+        <img src="{{ post.thumbnail.url }}" alt="{{ post.title }}"height ="80px" width="130px"><h1>{{ post.title }}</h1>
         
         {% if post.feature_image %}
             <img src="{{ post.feature_image.url }}" alt="{{ post.title }}" height="300px" width="900px">

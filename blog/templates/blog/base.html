@@ -71,11 +71,19 @@
             background-color: #007bff;
             border-color: #007bff;
             color: #ffffff;
+
         }
+        .logout-container {
+            text-align: right;
+            margin-top: 10px; 
+        }
+
+
         .btn-logout {
             background-color: #dc3545;
             border-color: #dc3545;
             color: #ffffff;
+            text-align: right;
         }
         .btn-login,
         .btn-signup,
@@ -97,7 +105,7 @@
         .btn-polls:hover {
             color: #f8f9fa;
         }
-        /* New styles for black buttons */
+        
         .btn-categories {
             background-color: #000000;
             border-color: #000000;
@@ -122,13 +130,21 @@
                 <a href="{% url 'tag_list' %}" class="btn btn-tags">Tags</a>
                 <a href="{% url 'polls:index' %}" class="btn btn-info">Polls</a>
                 
-                {% if user.is_authenticated %}
+                
+            </div>
+            <div style="float: right;">
+            {% if user.is_authenticated %}
                     <a href="{% url 'post_new' %}" class="btn btn-create-post">
                         <i class="fas fa-pencil-alt"></i> New Post
+
+
                     </a>
-                    <a href="{% url 'user_logout' %}" class="btn btn-logout">
+                    <a id='logout' href="{% url 'user_logout' %}" class="btn btn-logout">
                         <i class="fas fa-sign-out-alt"></i> Logout
-                    </a>
+                    </a>     
+                    
+                        
+                        
                     <a href="{% url 'user_detail' user_id=user.id %}" class="btn btn-info">
                         <i class="fas fa-user"></i> User Detail
                     </a>

@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm ,AuthenticationForm ,UserChangeForm
-from .models import Post ,User,Comment
 from django.core.validators import RegexValidator
+from .models import Post ,User,Comment
 
 class PostForm(forms.ModelForm):
 
@@ -35,6 +35,9 @@ class SignUpForm(UserCreationForm):
 
 class LoginForm(AuthenticationForm):
     print('U=I am here')
+    def get_email(self):
+        
+        return self.cleaned_data.get('email')
     class Meta:
         model = User
 
@@ -47,7 +50,7 @@ class EditProfileForm(UserChangeForm):
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ['author' ,'text' ]
+        fields = ['name' ,'text' ]
 
 
 class EmailOrUsernameAuthenticationForm(AuthenticationForm):
